@@ -3,7 +3,7 @@
 	'use strict';
 
 	describe('Todo Controller', function () {
-		var ctrl, scope, store;
+		let ctrl, scope, store;
 
 		// Load the module containing the app, only 'ng' is loaded by default.
 		beforeEach(module('todomvc'));
@@ -80,7 +80,7 @@
 		});
 
 		describe('having no Todos', function () {
-			var ctrl;
+			let ctrl;
 
 			beforeEach(inject(function ($controller) {
 				ctrl = $controller('TodoCtrl', {
@@ -115,7 +115,7 @@
 		});
 
 		describe('having some saved Todos', function () {
-			var ctrl;
+			let ctrl;
 
 			beforeEach(inject(function ($controller) {
 				ctrl = $controller('TodoCtrl', {
@@ -143,7 +143,7 @@
 			});
 
 			it('should remove Todos w/o title on saving', function () {
-				var todo = store.todos[2];
+				let todo = store.todos[2];
 				scope.editTodo(todo);
 				todo.title = '';
 				scope.saveEdits(todo);
@@ -151,7 +151,7 @@
 			});
 
 			it('should trim Todos on saving', function () {
-				var todo = store.todos[0];
+				let todo = store.todos[0];
 				scope.editTodo(todo);
 				todo.title = ' buy moar unicorns  ';
 				scope.saveEdits(todo);
@@ -170,7 +170,7 @@
 			});
 
 			it('revertTodo() get a Todo to its previous state', function () {
-				var todo = store.todos[0];
+				let todo = store.todos[0];
 				scope.editTodo(todo);
 				todo.title = 'Unicorn sparkly skypuffles.';
 				scope.revertEdits(todo);
