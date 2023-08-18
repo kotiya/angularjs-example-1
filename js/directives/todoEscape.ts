@@ -8,10 +8,10 @@ angular.module('todomvc')
 	.directive('todoEscape', function () {
 		'use strict';
 
-		var ESCAPE_KEY = 27;
+		const ESCAPE_KEY = 27;
 
-		return function (scope, elem, attrs) {
-			elem.bind('keydown', function (event) {
+		return function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attrs: ng.IAttributes) {
+			elem.bind('keydown', function (event: JQuery.Event) {
 				if (event.keyCode === ESCAPE_KEY) {
 					scope.$apply(attrs.todoEscape);
 				}
