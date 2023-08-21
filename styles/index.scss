@@ -1,0 +1,244 @@
+$primary-color: #b83f45;
+$secondary-color: #949494;
+$accent-color: #59A193;
+$background-color: #f5f5f5;
+$text-color: #111111;
+$placeholder-color: rgba(0, 0, 0, 0.4);
+
+@mixin placeholder-style {
+  font-style: italic;
+  font-weight: 400;
+  color: $placeholder-color;
+}
+
+@mixin vendor-prefix($property, $value) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;
+}
+
+@mixin transition($property, $duration) {
+  -webkit-transition: $property $duration;
+  -moz-transition: $property $duration;
+  -ms-transition: $property $duration;
+  -o-transition: $property $duration;
+  transition: $property $duration;
+}
+
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin background-image($url) {
+  background-image: url($url);
+}
+
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+@mixin background-position($position) {
+  -webkit-background-position: $position;
+  -moz-background-position: $position;
+  -o-background-position: $position;
+  background-position: $position;
+}
+
+@mixin background-repeat($repeat) {
+  -webkit-background-repeat: $repeat;
+  -moz-background-repeat: $repeat;
+  -o-background-repeat: $repeat;
+  background-repeat: $repeat;
+}
+
+@mixin background($url, $size, $position, $repeat) {
+  @include background-image($url);
+  @include background-size($size);
+  @include background-position($position);
+  @include background-repeat($repeat);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-wrap {
+  flex-wrap: wrap;
+}
+
+@mixin flex-grow($value) {
+  flex-grow: $value;
+}
+
+@mixin flex-shrink($value) {
+  flex-shrink: $value;
+}
+
+@mixin flex-basis($value) {
+  flex-basis: $value;
+}
+
+@mixin flex($grow, $shrink, $basis) {
+  flex: $grow $shrink $basis;
+}
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin placeholder-style {
+  &::-webkit-input-placeholder {
+    @include placeholder-style;
+  }
+  &::-moz-placeholder {
+    @include placeholder-style;
+  }
+  &::input-placeholder {
+    @include placeholder-style;
+  }
+}
+
+$font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-size: 14px;
+$line-height: 1.4em;
+$min-width: 230px;
+$max-width: 550px;
+$font-weight: 300;
+
+$hidden-class: hidden;
+$todoapp-class: todoapp;
+$new-todo-class: new-todo;
+$edit-class: edit;
+$main-class: main;
+$toggle-all-class: toggle-all;
+$toggle-class: toggle;
+$label-class: label;
+$destroy-class: destroy;
+$footer-class: footer;
+$todo-count-class: todo-count;
+$filters-class: filters;
+$clear-completed-class: clear-completed;
+$info-class: info;
+
+.#{$todoapp-class} {
+  background: #fff;
+  margin: 130px 0 40px 0;
+  position: relative;
+  @include box-shadow(0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1));
+}
+
+.#{$todoapp-class} h1 {
+  position: absolute;
+  top: -140px;
+  width: 100%;
+  font-size: 80px;
+  font-weight: 200;
+  text-align: center;
+  color: $primary-color;
+  @include font-smoothing;
+}
+
+.#{$new-todo-class},
+.#{$edit-class} {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: $font-family;
+  font-weight: inherit;
+  line-height: 1.4em;
+  color: inherit;
+  padding: 6px;
+  border: 1px solid #999;
+  @include box-shadow(inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2));
+  box-sizing: border-box;
+  @include font-smoothing;
+}
+
+.#{$new-todo-class} {
+  padding: 16px 16px 16px 60px;
+  height: 65px;
+  border: none;
+  background: rgba(0, 0, 0, 0.003);
+  @include box-shadow(inset 0 -2px 1px rgba(0, 0, 0, 0.03));
+}
+
+.#{$main-class} {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #e6e6e6;
+}
+
+.#{$toggle-all-class} {
+  width: 1px;
+  height: 1px;
+  border: none;
+  opacity: 0;
+  position: absolute;
+  right: 100%;
+  bottom: 100%;
+}
+
+.#{$toggle-all-class} + label {
+  @include flex-center;
+  width: 45px;
+  height: 65px;
+  font-size: 0;
+  position: absolute;
+  top: -65px;
+  left: -0;
+  &:before {
+    content: '❯';
+    display: inline-block;
+    font-size: 22px;
+    color: $secondary-color;
+    padding: 10px 27px 10px 27px;
+    @include transform(rotate(90deg));
+  }
+}
+
+.#{$toggle-all-class}:checked + label:before {
+  color: $primary-color;
+}
+
+.#{$todo-list-class} {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.#{$todo-list-class} li {
+  position: relative;
+  font-size: 24px;
+ 
