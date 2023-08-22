@@ -9,7 +9,7 @@ angular.module('todomvc')
 	.controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, store) {
 		'use strict';
 
-		var todos = $scope.todos = store.todos;
+		let todos = $scope.todos = store.todos;
 
 		$scope.newTodo = '';
 		$scope.editedTodo = null;
@@ -22,14 +22,14 @@ angular.module('todomvc')
 
 		// Monitor the current route for changes and adjust the filter accordingly.
 		$scope.$on('$routeChangeSuccess', function () {
-			var status = $scope.status = $routeParams.status || '';
+			const status = $scope.status = $routeParams.status || '';
 			$scope.statusFilter = (status === 'active') ?
 				{ completed: false } : (status === 'completed') ?
 				{ completed: true } : {};
 		});
 
 		$scope.addTodo = function () {
-			var newTodo = {
+			const newTodo = {
 				title: $scope.newTodo.trim(),
 				completed: false
 			};

@@ -24,7 +24,7 @@ angular.module('todomvc')
 	.factory('api', function ($resource) {
 		'use strict';
 
-		var store = {
+		let store = {
 			todos: [],
 
 			api: $resource('/api/todos/:id', null,
@@ -34,9 +34,9 @@ angular.module('todomvc')
 			),
 
 			clearCompleted: function () {
-				var originalTodos = store.todos.slice(0);
+				const originalTodos = store.todos.slice(0);
 
-				var incompleteTodos = store.todos.filter(function (todo) {
+				const incompleteTodos = store.todos.filter(function (todo) {
 					return !todo.completed;
 				});
 
@@ -49,7 +49,7 @@ angular.module('todomvc')
 			},
 
 			delete: function (todo) {
-				var originalTodos = store.todos.slice(0);
+				const originalTodos = store.todos.slice(0);
 
 				store.todos.splice(store.todos.indexOf(todo), 1);
 				return store.api.delete({ id: todo.id },
@@ -66,7 +66,7 @@ angular.module('todomvc')
 			},
 
 			insert: function (todo) {
-				var originalTodos = store.todos.slice(0);
+				const originalTodos = store.todos.slice(0);
 
 				return store.api.save(todo,
 					function success(resp) {
@@ -90,9 +90,9 @@ angular.module('todomvc')
 	.factory('localStorage', function ($q) {
 		'use strict';
 
-		var STORAGE_ID = 'todos-angularjs';
+		const STORAGE_ID = 'todos-angularjs';
 
-		var store = {
+		let store = {
 			todos: [],
 
 			_getFromLocalStorage: function () {
@@ -104,9 +104,9 @@ angular.module('todomvc')
 			},
 
 			clearCompleted: function () {
-				var deferred = $q.defer();
+				const deferred = $q.defer();
 
-				var incompleteTodos = store.todos.filter(function (todo) {
+				const incompleteTodos = store.todos.filter(function (todo) {
 					return !todo.completed;
 				});
 
@@ -119,7 +119,7 @@ angular.module('todomvc')
 			},
 
 			delete: function (todo) {
-				var deferred = $q.defer();
+				const deferred = $q.defer();
 
 				store.todos.splice(store.todos.indexOf(todo), 1);
 
@@ -130,7 +130,7 @@ angular.module('todomvc')
 			},
 
 			get: function () {
-				var deferred = $q.defer();
+				const deferred = $q.defer();
 
 				angular.copy(store._getFromLocalStorage(), store.todos);
 				deferred.resolve(store.todos);
@@ -139,7 +139,7 @@ angular.module('todomvc')
 			},
 
 			insert: function (todo) {
-				var deferred = $q.defer();
+				const deferred = $q.defer();
 
 				store.todos.push(todo);
 
@@ -150,7 +150,7 @@ angular.module('todomvc')
 			},
 
 			put: function (todo, index) {
-				var deferred = $q.defer();
+				const deferred = $q.defer();
 
 				store.todos[index] = todo;
 

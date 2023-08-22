@@ -6,16 +6,16 @@
  * @type {angular.Module}
  */
 angular.module('todomvc', ['ngRoute', 'ngResource'])
-	.config(function ($routeProvider) {
+	.config(($routeProvider: angular.route.IRouteProvider) => {
 		'use strict';
 
-		var routeConfig = {
+		const routeConfig: angular.route.IRoute = {
 			controller: 'TodoCtrl',
 			templateUrl: 'todomvc-index.html',
 			resolve: {
-				store: function (todoStorage) {
+				store: (todoStorage: angular.IPromise<any>) => {
 					// Get the correct module (API or localStorage).
-					return todoStorage.then(function (module) {
+					return todoStorage.then((module: any) => {
 						module.get(); // Fetch the todo records in the background.
 						return module;
 					});
